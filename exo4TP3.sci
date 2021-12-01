@@ -17,6 +17,11 @@ function [L,U] = mylu3b(A)
 
 endfunction
 /*
+-->exec('/home/anism/Calcul_Numerique_MEHIDI_ANIS/lsolve.sci', -1)
+
+-->exec('/home/anism/Calcul_Numerique_MEHIDI_ANIS/usolve.sci', -1)
+
+-->exec('/home/anism/Calcul_Numerique_MEHIDI_ANIS/exo4TP3.sci', -1)
 -->A=rand(3,3)
  A  = 
 
