@@ -6,6 +6,28 @@ function [x] = usolve(U,b)
         x(i) = (b(i) - U(i, (i + 1):n) * x((i + 1):n)) / U(i, i);
     end
 endfunction
+/*
+-->exec('/home/anism/Calcul_Numerique_MEHIDI_ANIS/exo2TP3.sci', -1)
+-->U=rand(3,3)
+ U  = 
+
+   0.484429    0.6884607   0.2177375
+   0.8729401   0.2768005   0.8299133
+   0.9237457   0.1984019   0.5626359
+
+-->b=rand(1,3)
+ b  = 
+
+   0.5866055   0.9894153   0.6332789
+
+-->[x] = usolve(U,b)
+ x  = 
+
+   0.4210852
+   0.1997842
+   1.1255574
+
+*/
 
 
 function [x] = lsolve(L,b)
@@ -16,8 +38,22 @@ function [x] = lsolve(L,b)
         x(i) = (b(i) - (L(i, 1:(i - 1)) * x(1:(i - 1)))) / L(i, i);
     end
 endfunction
+/*
+-->L=rand(3,3)
+ L  = 
 
+   0.2915253   0.2534683   0.5361702
+   0.7407287   0.5669515   0.3215196
+   0.6280628   0.0225112   0.9757575
 
+-->[x] = lsolve(L,b)
+ x  = 
+
+   2.0121941
+  -0.8838051
+  -0.6257804
+
+*/
 
 U_err = zeros(10);
 U_relres = zeros(10);

@@ -1,6 +1,4 @@
-// Exercice 8: Produit Matrice-Matrice
 
-//Question 1:
 function [C]=matmat1b(A,B)
     m=size(A,1)
     n=size(B,2)
@@ -9,6 +7,31 @@ function [C]=matmat1b(A,B)
         C(i, :) = A(i, :)*B + C(i, :);
     end
 endfunction
+
+/*
+-->exec('/home/anism/Calcul_Numerique_MEHIDI_ANIS/exo8TP2.sci', -1)
+-->A=rand(3,3)
+ A  = 
+
+   0.2856014   0.7313265   0.2104982
+   0.7944397   0.8246056   0.2595595
+   0.0096533   0.4057227   0.6369598
+
+-->B=rand(3,3)
+ B  = 
+
+   0.4603135   0.7953297   0.0928451
+   0.0717348   0.3802067   0.6888406
+   0.0498066   0.6670473   0.1981987
+
+-->[C]=matmat1b(A,B)
+ C  = 
+
+   0.1944119   0.6456148   0.5720045
+   0.437772    1.1185006   0.693226 
+   0.0652728   0.5868185   0.4066192
+
+*/
 function [C]=matmat2b(A,B)
     m=size(A,1)
     n=size(B,2)
@@ -19,6 +42,17 @@ function [C]=matmat2b(A,B)
         end
     end
 endfunction
+
+/*
+-->[C]=matmat2b(A,B)
+ C  = 
+
+   0.1944119   0.6456148   0.5720045
+   0.437772    1.1185006   0.693226 
+   0.0652728   0.5868185   0.4066192
+
+
+*/
 function [C]=matmat3b(A,B)
     m=size(A,1)
     n=size(B,2)
@@ -33,7 +67,15 @@ function [C]=matmat3b(A,B)
     end
 endfunction
 
+/*
+-->[C]=matmat3b(A,B)
+ C  = 
 
+   0.1944119   0.6456148   0.5720045
+   0.437772    1.1185006   0.693226 
+   0.0652728   0.5868185   0.4066192
+
+*/
 
 t3 = zeros(10);
 t2 = zeros(10);
