@@ -60,6 +60,8 @@ U_relres = zeros(10);
 
 L_err = zeros(10);
 L_relres = zeros(10);
+t1 = zeros(10);
+t2 = zeros(10);
 
 
 d = [10:10:100];
@@ -69,7 +71,7 @@ for n = d
 
         i = n / 10;
 	
-	
+	//Pour tester l'algorithme Usolve
 	A = rand(n, n);
 	U = triu(A);
 	L = tril(A);
@@ -83,16 +85,24 @@ for n = d
 	
 	U_err(i)=norm(xex-x)/norm(xex);
     U_relres(i)=norm(b-U*x)/(norm(U)*norm(x))
-
+     //Pour tester l'algorithme Lsolve
 	b1 = L * xex;
 	x1 = lsolve(L, b1);
 	
 	
 	L_err(i)=norm(xex-x1)/norm(xex);
     L_relres(i)=norm(b1-U*x1)/(norm(L)*norm(x1))
-
+    //Pour valider l'algorithme de Usolve
+    tic;
+        [x1] = usolve(U,b)
+        t1(i) = toc();
+        
+    //Pour valider l'algorithme de Lsolve
+    tic;
+        [x2] = lsolve(L,b)
+        t2(i) = toc();
 end
-
+//Les graphes pour le test des algorithmes
 xtitle("Usolve", "taille des matrices", "erreur");
 plot(d, [log(U_err) log(U_relres)]);
 legend(["Erreur avant" "Erreur arrière"], 2);
@@ -104,3 +114,16 @@ plot(d, [log(L_err) log(L_relres)]);
 legend(["Erreur avant" "Erreur arrière"], 2);
 xs2png(0, "./graphe/err_lsolve.png");
 clf();
+
+//Les graphes pour la validation des algorithmes
+xtitle("Usolve", "taille des matrices", "time");
+plot(d, [t1]);
+legend(["usolve"], 2);
+xs2png(0, "./graphe/tictocs_usolve.png");
+clf();  
+
+xtitle("Lsolve", "taille des matrices", "time");
+plot(d, [t2]);
+legend(["lsolve"], 2);
+xs2png(0, "./graphe/tictoc_lsolve.png");
+clf(); 

@@ -52,10 +52,12 @@ endfunction
 
 err = zeros(10);
 relres = zeros(10);
+t=zeros(10);
 d = [10:10:100];
 
 for n = d
     i = n / 10;
+    //Pour tester l'algorithme
 	A = rand(n, n);
 	xex = rand(1,n);
 	xex=xex';
@@ -63,15 +65,25 @@ for n = d
 	x = mylu3b(A);
 	
 	err(i)=norm(xex-x)/norm(xex);
-   
+   //Pour valider l'algorithme
+   tic;
+        [x] = mylu3b(A);
+        t(i) = toc();
 end
-
+//Graphe pour le test de l'algorithme
 xtitle("LU", "taille des matrices", "erreur");
 plot(d, [log(err) ]);
 legend(["Erreur avant"], 2);
 xs2png(0, "./graphe/err_lu.png");
 clf();
-   
+
+//Graphe pour la validation de l'algorithme
+xtitle("LU", "taille des matrices", "time");
+plot(d, [t]);
+legend(["mylu3b"], 2);
+xs2png(0, "./graphe/tictoc_mylu3b.png");
+clf();    
+       
 
 function [L,U] = mylu1b(A)
     n = size ( A, 1);

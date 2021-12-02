@@ -34,10 +34,12 @@ endfunction
 */
 err = zeros(10);
 relres = zeros(10);
+t = zeros(10);
 d = [10:10:100];
 
 for n = d
     i = n / 10;
+    //Pour tester l'algorithme  
 	A = rand(n, n);
 	xex = rand(1,n);
 	xex=xex';
@@ -45,12 +47,22 @@ for n = d
 	x = gausskij3b(A,b);
 	
 	err(i)=norm(xex-x)/norm(xex);
-    relres(i)=norm(b-A*x)/(norm(A)*norm(x))
+    relres(i)=norm(b-A*x)/(norm(A)*norm(x));
+    //Pour valider l'algorithme
+    tic;
+        [x] = gausskij3b(A,b);
+        t(i) = toc();
 end
-
+//Graphe pour le test de l'algorithme
 xtitle("Gauss", "taille des matrices", "erreur");
 plot(d, [log(err) log(relres)]);
 legend(["Erreur avant" "Erreur arrière"], 2);
 xs2png(0, "./graphe/err_gauss.png");
 clf();
     
+//Graphe pour la validation de l'algorithme
+xtitle("Gauss", "taille des matrices", "time");
+plot(d, [t]);
+legend(["gausskij3b"], 2);
+xs2png(0, "./graphe/tictoc_gauss.png");
+clf();    
